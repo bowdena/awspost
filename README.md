@@ -9,6 +9,6 @@ https://www.youtube.com/watch?v=2TInLtG8dj4
 ## Tests:
 
 Capybara:
-  bowdena@zn42957:~/code/nhs/awsposts$ rails test:system
+  ```bowdena@zn42957:~/code/nhs/awsposts$ rails test:system
 Normal:
-  bowdena@zn42957:~/code/nhs/awsposts$ rails test
+  ```bowdena@zn42957:~/code/nhs/awsposts$ rails test
