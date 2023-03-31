@@ -1,24 +1,4 @@
-# README
+This is a really, really, really, simple Rails app
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+That has a small number of tests that are to show passes and fails.
+The purpose of this project is to publish to github and then to use the CI/CD pipeline to deploy to AWS.
