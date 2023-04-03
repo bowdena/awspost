@@ -16,11 +16,11 @@ jobs:
           POSTGRES_DB: awspost_test
           POSTGRES_PASSWORD: postgres
         ports: ['5500:5432']
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10ms
-          --health-timeout 500ms
-          --health-retries 15
+        #options: >-
+        #  --health-cmd pg_isready
+        #  --health-interval 10ms
+        #  --health-timeout 500ms
+        #  --health-retries 15
       redis:
         image: redis
         ports: ['6379:6379']
