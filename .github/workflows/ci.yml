@@ -15,6 +15,7 @@ jobs:
           POSTGRES_USER: awspost
           POSTGRES_DB: awspost_test
           POSTGRES_PASSWORD: ""
+          PGPASSWORD: ""
         ports: ['5432:5432']
         options: >-
           --health-cmd pg_isready
