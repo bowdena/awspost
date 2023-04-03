@@ -5,8 +5,46 @@ on:
     branches: [ main, develop ]
   pull_request:
     branches: [ main, develop]
+
+
+
 jobs:
-  test:
+  linters:
+    name: Linters
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Ruby and install gems
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+
+      - name: Setup Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16
+          cache: yarn
+
+      - name: Install packages
+        run: |
+          yarn install --pure-lockfile
+
+      - name: Run linters
+        run: |
+          bin/rubocop --parallel
+          bin/stylelint
+          bin/prettier
+          bin/eslint
+
+      - name: Run security checks
+        run: |
+          bin/bundler-audit --update
+          bin/brakeman -q -w2
+
+  tests:
+    name: Test Harnesses
     runs-on: ubuntu-latest
     services:
       db:
@@ -41,7 +79,7 @@ jobs:
           node-version: 19.4.0
           cache: yarn
 
-      - name: Install yarn backages
+      - name: Install yarn packages
         run: |
           yarn install --pure-lockfile
 
