@@ -75,3 +75,12 @@ jobs:
           RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
         run: |
           bundle exec rails test
+
+      - name: Run Capybara Tests
+        env:
+          DATABASE_URL: postgres://postgres:postgres@localhost:5500/awspost_test
+          REDIS_URL: redis://localhost:6379/0
+          # RAILS_ENV: test
+          RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
+        run: |
+          bundle exec rails test:system
