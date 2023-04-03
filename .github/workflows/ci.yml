@@ -12,10 +12,10 @@ jobs:
       db:
         image: postgres:11
         env:
-          POSTGRES_USER: awspost
+          POSTGRES_USER: postgres
           POSTGRES_DB: awspost_test
-          POSTGRES_PASSWORD: "awspost"
-        ports: ['5432:5432']
+          POSTGRES_PASSWORD: postgres
+        ports: ['5500:5432']
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
@@ -48,14 +48,12 @@ jobs:
       - name: Prepare Database
         env:
           RAILS_ENV: test
-          PGHOST: localhost
-          PGUSER: awspost
         run: |
           bundle exec rails db:prepare
 
       - name: Run Tests
         env:
-          DATABASE_URL: postgres://postgres:@localhost:5432/awspost_test
+          #DATABASE_URL: postgres://postgres:@localhost:5432/awspost_test
           REDIS_URL: redis://localhost:6379/0
           RAILS_ENV: test
           RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
