@@ -23,7 +23,7 @@ default: &default
 
 development:
   <<: *default
-  database: awsposts_development
+  database: awspost_development
   username: postgres
   password: postgres
   host: localhost
@@ -89,6 +89,6 @@ test:
 #
 production:
   <<: *default
-  database: awsposts_production
+  database: awspost_production
   username: awsposts
   password: <%= ENV["AWSPOSTS_DATABASE_PASSWORD"] %>

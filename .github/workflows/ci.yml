@@ -38,7 +38,7 @@ jobs:
       - name: Setup Node
         uses: borales/actions-yarn@v4
         with:
-          node-version: 19.4.0
+          # node-version: 19.4.0
           cmd: install
 
       - name: Install yarn backages
@@ -58,6 +58,10 @@ jobs:
           RAILS_ENV: test
         run: |
           bundle exec rails db:prepare
+
+      - name: Prepare environment
+        run: |
+          rails test:prepare
 
       - name: Run Tests
         env:
