@@ -7,6 +7,13 @@ The purpose of this project is to publish to github and then to use the CI/CD pi
 
 https://www.youtube.com/watch?v=2TInLtG8dj4
 
+
+Very simple app.
+- Deployed to Docker (plan to deploy to Amazon ECR and ECS)
+- Deployed to AWS RDS (Postgres) - note you need a security group here
+- Runs GitHub Actions to build and merge
+
+
 ## Tests:
 
 ```bash
