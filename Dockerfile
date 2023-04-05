@@ -22,6 +22,7 @@ RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y build-essential default-libmysqlclient-dev \
     git libpq-dev libvips pkg-config nodejs npm nginx curl gnupg
 
+
 # Install application gems
 COPY Gemfile Gemfile.lock ./
 RUN bundle install && \
@@ -56,6 +57,10 @@ RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y default-mysql-client libsqlite3-0 libvips postgresql-client && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
+# After the image gets finished, add in applications required
+RUN apt-get update -qq && \
+    apt-get install vim -y
+
 # Copy built artifacts: gems, application
 COPY --from=build /usr/local/bundle /usr/local/bundle
 COPY --from=build /rails /rails
@@ -66,13 +71,8 @@ RUN useradd rails --home /rails --shell /bin/bash && \
 USER rails:rails
 
 # Entrypoint prepares the database.
-# ENTRYPOINT ["/rails/bin/docker-entrypoint"]
+ENTRYPOINT ["/rails/bin/docker-entrypoint"]
 
 # Start the server by default, this can be overwritten at runtime
 EXPOSE 3000
-# CMD ["./bin/rails", "server"]
-# Set up Nginx as the reverse proxy
-COPY nginx.conf /etc/nginx/nginx.conf
-
-# Start Nginx and the Rails app
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["./bin/rails", "server"]
