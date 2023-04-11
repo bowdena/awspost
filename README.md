@@ -29,6 +29,10 @@ bowdena@zn42957:~/code/nhs/awsposts$ docker build  -t awsposts .
 # connect to the image
 bowdena@zn42957:~/code/nhs/awsposts$ docker run --rm -it -u 0 --entrypoint bash awsposts (root - if you don't want root, remove -u 0)
 
+# If running on Mac
+# bowdena@zn42957:~/code/nhs/awsposts$ docker buildx build --platform=linux/amd64 -t awsposts .
+# From https://stackoverflow.com/questions/67361936/exec-user-process-caused-exec-format-error-in-aws-fargate-service
+
 Run
 (master key for production from production.key)
 docker run --rm -it -p 3001:3000 -e RAILS_MASTER_KEY=9cd56adcd96df3d04415ebeb0f62384a -e RAILS_ENV=production -e SECRET_KEY_BASE=cc612e2c2a5d906ee4f93f5dc3f1e21499542cde718c7913c1774613f92dde14249460f7869cfe1f2c2c07686e9d3150fbcb89e7a8e7988626f1f2eea49ead60 \
@@ -37,5 +41,7 @@ docker run --rm -it -p 3001:3000 -e RAILS_MASTER_KEY=9cd56adcd96df3d04415ebeb0f6
 -e AWSPOSTS_DATABASE_PORT=5432 \
 awsposts
 
+# When deploying to AWS, you need to set the environment variables in the ECS task definition
+# https://repost.aws/questions/QUx8ALedH3TZiemMQKNGkHcA/cdk-ecs-fargate-how-to-specify-arguments-to-docker-container
 
 
