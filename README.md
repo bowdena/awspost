@@ -33,6 +33,12 @@ bowdena@zn42957:~/code/nhs/awsposts$ docker run --rm -it -u 0 --entrypoint bash 
 # bowdena@zn42957:~/code/nhs/awsposts$ docker buildx build --platform=linux/amd64 -t awsposts .
 # From https://stackoverflow.com/questions/67361936/exec-user-process-caused-exec-format-error-in-aws-fargate-service
 
+aws ecr get-login-password --region ap-southeast-4 | docker login --username AWS --password-stdin 186196378788.dkr.ecr.ap-southeast-4.amazonaws.com
+docker tag awsposts:latest 186196378788.dkr.ecr.ap-southeast-4.amazonaws.com/test:latest
+docker push 186196378788.dkr.ecr.ap-southeast-4.amazonaws.com/test:latest
+
+
+
 Run
 (master key for production from production.key)
 docker run --rm -it -p 3001:3000 -e RAILS_MASTER_KEY=9cd56adcd96df3d04415ebeb0f62384a -e RAILS_ENV=production -e SECRET_KEY_BASE=cc612e2c2a5d906ee4f93f5dc3f1e21499542cde718c7913c1774613f92dde14249460f7869cfe1f2c2c07686e9d3150fbcb89e7a8e7988626f1f2eea49ead60 \
