@@ -1,0 +1,42 @@
+<h1>StaticPages#CloudFront cached</h1>
+<p>This is a page that has a lot of heavy assets that we want the CDN to pick up on.</p>
+<div data-controller="corstest">
+  <button data-action="click->corstest#triggertest">Trigger Stimulus Testing</button>
+</div>
+<h1>This is using font awesome SVG's (as per usual)</h1>
+<div class="time-to-get-ill">
+  <style>
+    .icon {
+      width: 1em;
+      height: 1em;
+      vertical-align: -.125em;
+    }
+  </style>
+  This icon is updated. It's
+  <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 512 512">
+    <path d="M272 251.2L333.3 343.1C338.2 350.5 336.2 360.4 328.9 365.3C321.5 370.2 311.6 368.2 306.7 360.9L242.7 264.9C240.9 262.2 240 259.2 240 255.1V111.1C240 103.2 247.2 95.1 256 95.1C264.8 95.1 272 103.2 272 111.1L272 251.2zM512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM256 32C132.3 32 32 132.3 32 256C32 379.7 132.3 480 256 480C379.7 480 480 379.7 480 256C480 132.3 379.7 32 256 32z"/>
+  </svg>
+  somewhere.
+</div>
+<h1>Use the font awesome classes</h1>
+<i class="fas fa-solid fa-user"></i>
+<!-- uses solid style -->
+<i class="fas fa-brands fa-github-square"></i>
+<!-- uses brand style -->
+<i class="fas fa-user"></i>
+<br />
+<%= link_to "-------> T3 PDF download", asset_path("/cdn/x-t3.pdf") %>
+<br />
+<%= link_to "-------> MP4 download", asset_path("/cdn/driving.mp4") %>
+<br />
+<%= link_to "-------> Text download (~85Mb, ~31Mb compressed)", asset_path("/cdn/big_Romeo_and_Juliet.txt") %>
+<br />
+<br />
+Small embedded image
+<br />
+<%= image_tag("/cdn/solar-flare.en.jpg", size: "1280x720")  %>
+<br />
+Large embedded image
+<br />
+<%= image_tag("/cdn/jessy-smith-6g06Qb4E7QM-unsplash.jpg", size: "1280x720")  %>
+<br />
