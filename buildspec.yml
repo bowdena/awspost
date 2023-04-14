@@ -7,11 +7,11 @@ phases:
       - REPOSITORY_URI=$ecr_uri
       - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
       - IMAGE_TAG=${COMMIT_HASH:=latest}
-      - echo "Repository URI: $REPOSITORY_URI"
-      - echo "Image tag: $IMAGE_TAG"
-      - echo "Ecr URI: $ecr_uri"
-      - echo "ECS Container Name: $ecs_container_name"
-      - echo "ECS: $ecs_uri"
+      - echo "Repository URI: ${REPOSITORY_URI}"
+      - echo "Image tag: ${IMAGE_TAG}"
+      - echo "Ecr URI: ${ecr_uri}"
+      - echo "ECS Container Name: ${ecs_container_name}"
+      - echo "ECS: ${ecs_uri}"
   build:
     commands:
       - echo Build started on `date`
