@@ -7,14 +7,15 @@ phases:
       - aws --version
       - echo "ECR_URI=${ecr_uri}"
       - echo "AWS_REGION=${aws_region} "
-      - echo "ECS_SERVICE_NAME=${ecs_service_name}"
       - REPOSITORY_URI=$ecr_uri
       - aws ecr get-login-password --region $aws_region | docker login --username AWS --password-stdin $REPOSITORY_URI
       - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
       - IMAGE_TAG=${COMMIT_HASH:=latest}
+      - ECS_SERVICE_NAME=$ecs_service_name
       - echo "REPOSITORY_URI=${REPOSITORY_URI}"
       - echo "REPOSITORY_URI=${COMMIT_HASH}"
       - echo "IMAGE_TAG=${IMAGE_TAG}"
+      - echo "ECS_SERVICE_NAME=${ECS_SERVICE_NAME}"
   build:
     commands:
       - echo Build started on `date`
